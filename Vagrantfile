@@ -20,7 +20,21 @@ Vagrant.configure(2) do |config|
     nodejs.vm.synced_folder "../", "/home/vagrant/share"
   end
 
-  # config.vm.network "private_network", ip: "192.168.33.10"
-  # config.vm.network "public_network"
+  config.vm.define "go" do |go|
+    go.vm.box = "ubuntu/trusty64"
+    go.vm.hostname = "go"
+    go.vm.network "private_network", ip: "192.168.33.10"
+    go.vm.network "forwarded_port", guest: 4000, host: 4000, auto_correct: true
+    go.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
+
+    go.vm.provider :virtualbox do |vb|
+      vb.gui = false
+      vb.memory = 512
+      vb.cpus = 1
+    end
+
+    go.vm.provision "shell", path: "provision/go.sh"
+    go.vm.synced_folder "../", "/home/vagrant/go/src/github.com/pyk"
+  end
 
 end
