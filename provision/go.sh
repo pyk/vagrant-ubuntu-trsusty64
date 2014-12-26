@@ -31,5 +31,5 @@ wget --no-check-certificate --no-verbose https://storage.googleapis.com/golang/$
 tar -C /usr/local -xzf $GO_FILE_NAME
 
 echo "8: setup golang workspace"
-mkdir $HOME/go
 mkdir -p $HOME/go/src/github.com/pyk
+chown -R vagrant $HOME/go
