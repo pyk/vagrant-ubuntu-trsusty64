@@ -16,7 +16,9 @@ Vagrant.configure(2) do |config|
       vb.cpus = 1
     end
 
-    nodejs.vm.provision "shell", path: "provision/nodejs.sh"
+    go.vm.provision "shell", path: "provision/general.root.sh"
+    go.vm.provision "shell", path: "provision/general.user.sh", privileged: false
+    go.vm.provision "shell", path: "provision/node.root.sh"
     nodejs.vm.synced_folder "../", "/home/vagrant/share"
   end
 
@@ -30,10 +32,12 @@ Vagrant.configure(2) do |config|
     go.vm.provider :virtualbox do |vb|
       vb.gui = false
       vb.memory = 512
-      vb.cpus = 1
+      vb.cpus = 2
     end
 
-    go.vm.provision "shell", path: "provision/go.sh"
+    go.vm.provision "shell", path: "provision/general.root.sh"
+    go.vm.provision "shell", path: "provision/general.user.sh", privileged: false
+    go.vm.provision "shell", path: "provision/go.root.sh"
     go.vm.synced_folder "../", "/home/vagrant/go/src/github.com/pyk"
   end
 
@@ -50,7 +54,8 @@ Vagrant.configure(2) do |config|
       vb.cpus = 1
     end
 
-    mailable.vm.provision "shell", path: "provision/mailable.sh"
+    go.vm.provision "shell", path: "provision/general.root.sh"
+    go.vm.provision "shell", path: "provision/general.user.sh", privileged: false
     mailable.vm.synced_folder "../", "/home/vagrant/go/src/github.com/pyk"
   end
 end
