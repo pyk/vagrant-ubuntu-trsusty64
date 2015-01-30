@@ -16,9 +16,9 @@ Vagrant.configure(2) do |config|
       vb.cpus = 1
     end
 
-    go.vm.provision "shell", path: "provision/general.root.sh"
-    go.vm.provision "shell", path: "provision/general.user.sh", privileged: false
-    go.vm.provision "shell", path: "provision/node.root.sh"
+    nodejs.vm.provision "shell", path: "provision/general.root.sh"
+    nodejs.vm.provision "shell", path: "provision/general.user.sh", privileged: false
+    nodejs.vm.provision "shell", path: "provision/node.root.sh"
     nodejs.vm.synced_folder "../", "/home/vagrant/share"
   end
 
