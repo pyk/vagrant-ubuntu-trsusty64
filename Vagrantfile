@@ -61,25 +61,43 @@ Vagrant.configure(2) do |config|
     ubuntu.vm.synced_folder "../", "/home/vagrant/go/src/github.com/pyk"
   end
 
-  config.vm.define "priceable" do |priceable|
-    priceable.vm.box = "ubuntu/trusty64"
-    priceable.vm.hostname = "priceable"
-    priceable.vm.network "private_network", ip: "192.168.33.10"
-    priceable.vm.network "forwarded_port", guest: 4000, host: 4000, auto_correct: true
-    priceable.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
+  config.vm.define "packagepaths" do |packagepaths|
+    packagepaths.vm.box = "ubuntu/trusty64"
+    packagepaths.vm.hostname = "packagepaths"
+    packagepaths.vm.network "private_network", ip: "192.168.33.10"
+    packagepaths.vm.network "forwarded_port", guest: 4000, host: 4000, auto_correct: true
+    packagepaths.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
 
-    priceable.vm.provider :virtualbox do |vb|
+    packagepaths.vm.provider :virtualbox do |vb|
       vb.gui = false
       vb.memory = 512
       vb.cpus = 2
     end
 
-    priceable.vm.provision "shell", path: "provision/general.root.sh"
-    priceable.vm.provision "shell", path: "provision/general.user.sh", privileged: false
-    priceable.vm.provision "shell", path: "provision/go.root.sh"
-    priceable.vm.provision "shell", path: "provision/node.root.sh"
-    priceable.vm.provision "shell", path: "provision/postgresql.root.sh"
-    priceable.vm.provision "shell", path: "provision/nginx.root.sh"
-    priceable.vm.synced_folder "../", "/home/vagrant/go/src/github.com/pyk"
+    packagepaths.vm.provision "shell", path: "provision/general.root.sh"
+    packagepaths.vm.provision "shell", path: "provision/general.user.sh", privileged: false
+    packagepaths.vm.provision "shell", path: "provision/go.root.sh"
+    packagepaths.vm.provision "shell", path: "provision/postgresql.root.sh"
+    packagepaths.vm.synced_folder "../", "/home/vagrant/go/src/github.com/pyk"
+  end
+
+  config.vm.define "research" do |research|
+    research.vm.box = "ubuntu/trusty64"
+    research.vm.hostname = "research"
+    research.vm.network "private_network", ip: "192.168.33.10"
+    research.vm.network "forwarded_port", guest: 4000, host: 4000, auto_correct: true
+    research.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
+
+    research.vm.provider :virtualbox do |vb|
+      vb.gui = false
+      vb.memory = 512
+      vb.cpus = 2
+    end
+
+    research.vm.provision "shell", path: "provision/general.root.sh"
+    research.vm.provision "shell", path: "provision/general.user.sh", privileged: false
+    research.vm.provision "shell", path: "provision/go.root.sh"
+    research.vm.provision "shell", path: "provision/postgresql.root.sh"
+    research.vm.synced_folder "../", "/home/vagrant/go/src/github.com/pyk"
   end
 end
