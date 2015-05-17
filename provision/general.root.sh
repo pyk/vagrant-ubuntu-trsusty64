@@ -31,3 +31,6 @@ apt-get install curl -y
 
 echo "general.root: installing vim"
 apt-get install vim -y
+
+echo "general.root: installing build-essential"
+apt-get install build-essential -y
