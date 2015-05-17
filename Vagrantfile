@@ -6,8 +6,9 @@ Vagrant.configure(2) do |config|
     research.vm.box = "ubuntu/trusty64"
     research.vm.hostname = "research"
     research.vm.network "private_network", ip: "192.168.33.10"
-    research.vm.network "forwarded_port", guest: 4000, host: 4000, auto_correct: true
-    research.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
+    (0..5).each do |i|
+      research.vm.network "forwarded_port", guest: (4000 + i), host: (4000 + i), auto_correct: true
+    end
 
     research.vm.provider :virtualbox do |vb|
       vb.gui = false
