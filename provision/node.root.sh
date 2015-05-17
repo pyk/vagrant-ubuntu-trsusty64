@@ -4,9 +4,7 @@ if [ -x /usr/local/bin/n ];then
     echo "node.root: node `node -v` already installed"
 else
     echo "node.root: installing the latest stable release of nodejs"
-    mkdir /home/vagrant/provision
-    git clone https://github.com/tj/n.git /home/vagrant/provision/n
-    cd /home/vagrant/provision/n/
-    make install
-    n stable
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
+    exec $SHELL
+    nvm install stable
 fi
