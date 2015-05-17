@@ -16,5 +16,5 @@ else
 
     echo "go.root: setup golang workspace"
     mkdir -p $HOME/go/src/github.com/pyk
-    chown -R vagrant $HOME/go 
+    # chown -R vagrant $HOME/go 
 fi
