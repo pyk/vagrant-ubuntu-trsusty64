@@ -6,5 +6,6 @@ else
     echo "node.root: installing the latest stable release of nodejs"
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
     exec $SHELL
-    nvm install stable
+    nvm install iojs
+    nvm alias default iojs
 fi
