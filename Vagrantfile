@@ -10,6 +10,10 @@ Vagrant.configure(2) do |config|
       research.vm.network "forwarded_port", guest: (4000 + i), host: (4000 + i), auto_correct: true
     end
 
+    # for ember.js sake
+    research.vm.network "forwarded_port", guest: 4200, host: 4200, auto_correct: true
+    research.vm.network "forwarded_port", guest: 35729, host: 35729, auto_correct: true
+
     research.vm.provider :virtualbox do |vb|
       vb.gui = false
       vb.memory = 512
@@ -21,6 +25,6 @@ Vagrant.configure(2) do |config|
     research.vm.provision "shell", path: "provision/go.root.sh"
     research.vm.provision "shell", path: "provision/postgresql.root.sh"
     research.vm.provision "shell", path: "provision/node.root.sh"
-    research.vm.synced_folder "../", "/home/vagrant/go/src/github.com/pyk"
+    research.vm.synced_folder "/home/pyk/go/src", "/home/vagrant/go/src/", type: "nfs"
   end
 end
