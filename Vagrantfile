@@ -6,17 +6,10 @@ Vagrant.configure(2) do |config|
     research.vm.box = "ubuntu/trusty64"
     research.vm.hostname = "research"
     research.vm.network "private_network", ip: "192.168.33.10"
-    (0..5).each do |i|
-      research.vm.network "forwarded_port", guest: (4000 + i), host: (4000 + i), auto_correct: true
-    end
-
-    # for ember.js sake
-    research.vm.network "forwarded_port", guest: 4200, host: 4200, auto_correct: true
-    research.vm.network "forwarded_port", guest: 35729, host: 35729, auto_correct: true
 
     research.vm.provider :virtualbox do |vb|
       vb.gui = false
-      vb.memory = 512
+      vb.memory = 1024
       vb.cpus = 2
     end
 

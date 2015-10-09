@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ -x /usr/local/go/ ];then 
+if [ -x /usr/local/go/ ];then
     echo "go.root: golang already installed"
 else
-    echo "go.root: runnning..." 
+    echo "go.root: runnning..."
     echo "go.root: export required env variable"
-    export GO_FILE_NAME=go1.4.2.linux-amd64.tar.gz
+    export GO_FILE_NAME=go1.5.linux-amd64.tar.gz
     export HOME=/home/vagrant
 
     echo "go.root: installing the latest stable release of golang"
@@ -16,5 +16,5 @@ else
 
     echo "go.root: setup golang workspace"
     mkdir -p $HOME/go/src/github.com/pyk
-    # chown -R vagrant $HOME/go 
+    # chown -R vagrant $HOME/go
 fi
